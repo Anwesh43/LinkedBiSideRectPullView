@@ -209,4 +209,13 @@ class BiSideRectPullView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiSideRectPullView {
+            val view : BiSideRectPullView = BiSideRectPullView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
