@@ -186,4 +186,26 @@ class BiSideRectPullView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiSideRectPullView) {
+
+        private val animator : Animator = Animator(view)
+        private val bsrp : BiSideRectPull = BiSideRectPull(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            bsrp.draw(canvas, paint)
+            animator.animate {
+                bsrp.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bsrp.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
